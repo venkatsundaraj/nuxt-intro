@@ -39,8 +39,16 @@ const username = ref("");
 const password = ref("");
 const isLoading = ref<boolean>(false);
 
-const handleLogin = async () => {
+const handleLogin = async (e: Event) => {
   // e.preventDefault();
-  console.log(username.value, password.value);
+  const response = await $fetch("/api/auth/login", {
+    method: "POST",
+    body: {
+      username: username.value,
+      password: password.value,
+    },
+  });
+
+  console.log(response);
 };
 </script>
